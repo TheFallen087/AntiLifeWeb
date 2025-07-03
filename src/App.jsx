@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Shield, MessageSquare, Play, ChevronDown, Menu, X, Wifi, Clock, MapPin, Gamepad2, AlertTriangle, Copy, Check, TrendingUp, Award, HeartHandshake, Activity, Users, Server, BarChart3, Zap, BookOpen, Headphones, Terminal, Eye, Lock, Unlock, Volume2, VolumeX, Crosshair, Radio, Car, DollarSign, Briefcase, Home, Trophy, Star, Skull, Code, Database, Cpu, HardDrive } from 'lucide-react';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+
 
 const App = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -54,23 +54,6 @@ const App = () => {
     network: 156
   });
   
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <html lang="en">
-      <head>
-        <title>Next.js</title>
-      </head>
-      <body>
-        {children}
-        <SpeedInsights />
-      </body>
-    </html>
-  );
-}
   
   // WebGL Shader Background
   useEffect(() => {
