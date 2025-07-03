@@ -509,16 +509,46 @@ const App = () => {
   
   const parallaxOffset = scrollY * 0.3;
   
+  // Mock data
   const updates = [
-    { date: '2024-12-28', title: 'New Heist System Released', type: 'feature' },
-    { date: '2024-12-23', title: 'Anti-Cheat Update v2.3', type: 'security' },
-    { date: '2024-12-20', title: 'Performance Optimizations', type: 'update' }
+    { date: '2025-7-3', title: 'New Heist System Released', type: 'feature' },
+    { date: '2025-7-3', title: 'Anti-Cheat Update v2.3', type: 'security' },
+    { date: '2025-7-3', title: 'Performance Optimizations', type: 'update' }
   ];
   
   const staff = [
-    { name: 'Five', role: 'Owner/Developer', status: 'online', avatar: '👤', bio: '6+ years FiveM development' },
-    { name: 'Hemlox', role: 'Owner/Developer', status: 'online', avatar: '🛡️', bio: 'Community management specialist' },
-    { name: 'Skeeter', role: 'Owner', status: 'busy', avatar: '💻', bio: 'Some Redneck' },
+    { 
+      name: 'Five', 
+      role: 'Owner/Developer', 
+      status: 'online', 
+      logo: '/logos/shadow.png', // Place your logo in public/logos/shadow.png
+      bio: '6+ years FiveM development/Full Stack Dev',
+      glow: '#8B5CF6' // Optional: Custom glow color
+    },
+    { 
+      name: 'Hemlox', 
+      role: 'Owner/Developer', 
+      status: 'online', 
+      logo: '/logos/hamlox-01.png', // Or use external URL: 'https://example.com/logo.png'
+      bio: 'Community management specialist',
+      glow: '#EF4444'
+    },
+    { 
+      name: 'Skeeter', 
+      role: 'Owner', 
+      status: 'busy', 
+      logo: '/logos/raven.png', // Or use base64: 'data:image/png;base64,...'
+      bio: 'Our favorite white boy',
+      glow: '#3B82F6'
+    },
+    { 
+      name: 'Zaxman', 
+      role: 'Head Admin', 
+      status: 'online', 
+      logo: '/logos/ghost.png',
+      bio: 'Red Neck',
+      glow: '#10B981'
+    }
   ];
 
   return (
@@ -713,7 +743,7 @@ const App = () => {
               </a>
             ))}
             <a
-              href="https://discord.gg/antilife"
+              href="https://discord.gg/k7EZqBgUrf"
               className="flex items-center space-x-2 bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition-all duration-300 magnetic hover-lift"
               onClick={(e) => {
                 createRipple(e);
@@ -1189,7 +1219,29 @@ const App = () => {
               >
                 <div className="bg-white/5 backdrop-blur-sm p-6 rounded-lg border border-white/10 hover:border-white/30 transition-all duration-300 h-full overflow-hidden glass-morphism hover-lift">
                   <div className="flex items-center justify-between mb-4">
-                    <div className="text-4xl transform group-hover:scale-110 transition-transform">{member.avatar}</div>
+                    <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-white/10 border border-white/20 group staff-logo-container">
+                      <img 
+                        src={member.logo} 
+                        alt={member.name}
+                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300 staff-logo"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                          e.target.parentElement.innerHTML = `
+                            <div class="w-full h-full flex items-center justify-center text-2xl font-bold text-white/50">
+                              ${member.name.charAt(0)}
+                            </div>
+                          `;
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      {/* Custom glow effect */}
+                      {member.glow && (
+                        <div 
+                          className="absolute inset-0 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-300 -z-10 scale-150"
+                          style={{ backgroundColor: member.glow }}
+                        />
+                      )}
+                    </div>
                     <div className={`w-3 h-3 rounded-full ${
                       member.status === 'online' ? 'bg-green-400' :
                       member.status === 'busy' ? 'bg-yellow-400' :
@@ -1208,8 +1260,15 @@ const App = () => {
                     </p>
                   </div>
                   
-                  {/* Hover effect */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                  {/* Hover effect with custom glow */}
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                    style={{
+                      background: member.glow 
+                        ? `linear-gradient(to top, ${member.glow}20, transparent)`
+                        : 'linear-gradient(to top, rgba(255,255,255,0.1), transparent)'
+                    }}
+                  />
                 </div>
               </div>
             ))}
@@ -1299,12 +1358,12 @@ const App = () => {
             <div className="support-card text-center p-8 bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/30 transition-all group glass-morphism hover-lift">
               <MessageSquare className="w-16 h-16 mx-auto mb-4 group-hover:scale-110 transition-transform magnetic" />
               <h3 className="text-2xl font-bold mb-2">DISCORD</h3>
-              <p className="text-gray-400 mb-4">Join 5,000+ members</p>
+              <p className="text-gray-400 mb-4">Join 100+ members</p>
               <a 
-                href="https://discord.gg/antilife" 
+                href="https://discord.gg/k7EZqBgUrf" 
                 className="text-sm text-gray-300 hover:text-white transition-colors magnetic"
               >
-                discord.gg/antilife →
+                https://discord.gg/k7EZqBgUrf →
               </a>
             </div>
             
@@ -1354,7 +1413,7 @@ const App = () => {
 
             <div className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
               <a
-                href="https://discord.gg/antilife"
+                href="https://discord.gg/k7EZqBgUrf"
                 className="flex items-center justify-center space-x-3 px-8 py-4 bg-white text-black font-bold hover:bg-gray-200 transition-colors magnetic hover-lift"
                 onClick={(e) => {
                   createRipple(e);
@@ -1395,7 +1454,7 @@ const App = () => {
                 <circle cx="50" cy="50" r="8" fill={matrixMode ? '#00ff00' : 'white'} />
               </svg>
             </div>
-            <p className="text-gray-500">© 2024 ANTI LIFE ROLEPLAY. ALL RIGHTS RESERVED.</p>
+            <p className="text-gray-500">© 2025 ANTI LIFE ROLEPLAY. ALL RIGHTS RESERVED.</p>
             <p className="text-xs text-gray-600 mt-2">
               FiveM® is a registered trademark of Cfx.re
             </p>
@@ -1568,6 +1627,33 @@ const App = () => {
         
         .visible {
           opacity: 1;
+        }
+        
+        /* Logo image effects */
+        .staff-logo {
+          image-rendering: crisp-edges;
+          image-rendering: -webkit-optimize-contrast;
+        }
+        
+        .staff-logo-container {
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .staff-logo-container::before {
+          content: '';
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          right: -2px;
+          bottom: -2px;
+          background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+          transform: translateX(-100%);
+          transition: transform 0.6s;
+        }
+        
+        .staff-card:hover .staff-logo-container::before {
+          transform: translateX(100%);
         }
       `}</style>
     </div>
